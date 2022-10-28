@@ -77,12 +77,11 @@ public class FunnyAlgorithmsTest {
 	public void testBinarySearchGetsIt() {
 		assertEquals(-1, prova.binarySearch(elem, 4));
 	}
-	/*
 	@Test
 	public void testAscendentSort() {
 		int[] nuova=elem;
 		boolean check=true;
-		prova.selectionSort(nuova, 0);
+		prova.selectionSort(nuova, 1);
 		System.out.println(nuova.toString());
 		for (int i=0;i<nuova.length-1;i++) {
 			if (nuova[i]>nuova[i+1]) {
@@ -90,5 +89,23 @@ public class FunnyAlgorithmsTest {
 			}
 		}
 		assertTrue(check);
-	}*/
+	}
+	@Test
+	public void testDescendentSort() {
+		int[] nuova=elem;
+		boolean check=true;
+		prova.selectionSort(nuova, 0);
+		System.out.println(nuova.toString());
+		for (int i=0;i<nuova.length-1;i++) {
+			if (nuova[i]<nuova[i+1]) {
+				check=false;
+			}
+		}
+		assertTrue(check);
+	}
+	@Test
+	public void testNumberError() {
+		thrown.expect(IllegalArgumentException.class);
+		prova.selectionSort(elem, 2);
+	}
 }
