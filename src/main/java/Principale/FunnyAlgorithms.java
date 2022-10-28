@@ -1,5 +1,7 @@
 package Principale;
 
+import java.util.Collections;
+
 public class FunnyAlgorithms {
 
 	/**
@@ -11,10 +13,10 @@ public class FunnyAlgorithms {
 	 * @return Index of target in nums array, -1 otherwise
 	 */
 	public int binarySearch(int[] nums, int target) {
-		int left = 1, right = nums.length - 2;
-
+		int left = 0, right = nums.length - 1;
+		selectionSort(nums, 1);
 		while (left <= right) {
-			int mid = left + (right - left) / 2;
+			int mid = (int)left + (right - left) / 2;
 
 			// target is found
 			if (target == nums[mid]) {
@@ -47,7 +49,7 @@ public class FunnyAlgorithms {
 			throw new IllegalArgumentException("L'ordine può essere 0 o 1.");
 		}
 
-		for (int i = 0; i < array.length - 2; i++) {
+		for (int i = 0; i < array.length - 1; i++) {
 			int min = i;
 			for (int j = i + 1; j < array.length; j++) {
 				boolean orderCondition = order == 0 ? array[j] > array[min] : array[j] < array[min];

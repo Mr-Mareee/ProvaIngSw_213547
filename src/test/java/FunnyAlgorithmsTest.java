@@ -1,4 +1,8 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 
 import org.joda.time.DateTime;
 import org.joda.time.Period;
@@ -13,6 +17,7 @@ import Principale.FunnyAlgorithms;
 public class FunnyAlgorithmsTest {
 	public static FunnyAlgorithms prova;
 	public static DateTime tempo;
+	static int[] elem;
 	@SuppressWarnings("deprecation")
 	@Rule
     public ExpectedException thrown = ExpectedException.none();
@@ -22,6 +27,8 @@ public class FunnyAlgorithmsTest {
 		System.out.println("STO INIZIANDO A FARE I TEST");
 		tempo = new DateTime();
 		System.out.println(tempo);
+		elem = new int[4];
+		elem[0]=1;elem[1]=2;elem[2]=5;elem[3]=3;
 	}
 	
 	@AfterClass
@@ -61,4 +68,27 @@ public class FunnyAlgorithmsTest {
 		thrown.expect(IllegalArgumentException.class);
 		prova.stringToIntConverter("-32769");
 	}
+	@Test
+	public void testBinarySearchFinds() {
+		assertNotEquals(-1, prova.binarySearch(elem,5));
+	}
+	
+	@Test
+	public void testBinarySearchGetsIt() {
+		assertEquals(-1, prova.binarySearch(elem, 4));
+	}
+	/*
+	@Test
+	public void testAscendentSort() {
+		int[] nuova=elem;
+		boolean check=true;
+		prova.selectionSort(nuova, 0);
+		System.out.println(nuova.toString());
+		for (int i=0;i<nuova.length-1;i++) {
+			if (nuova[i]>nuova[i+1]) {
+				check=false;
+			}
+		}
+		assertTrue(check);
+	}*/
 }
