@@ -38,4 +38,27 @@ public class FunnyAlgorithmsTest {
 	public void ProvaStringToIntBuono() {
 		assertEquals(123, prova.stringToIntConverter("123"));
 	}
+	@Test
+	public void ProvaNegativi() {
+		assertEquals(-122, prova.stringToIntConverter("-122"));
+	}
+	@Test
+	public void ProvaSpazio() {
+		assertEquals(10,prova.stringToIntConverter("10 "));
+	}
+	@Test
+	public void ProvaSpazioNegativo() {
+		thrown.expect(IllegalArgumentException.class);
+		prova.stringToIntConverter("2 3");
+	}
+	@Test 
+	public void TooBig() {
+		thrown.expect(IllegalArgumentException.class);
+		prova.stringToIntConverter("32768");
+	}
+	@Test 
+	public void TooLittle() {
+		thrown.expect(IllegalArgumentException.class);
+		prova.stringToIntConverter("-32769");
+	}
 }

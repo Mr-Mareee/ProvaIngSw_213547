@@ -70,13 +70,26 @@ public class FunnyAlgorithms {
 	 * @throws UnsupportedOperationException
 	 */
 	public int stringToIntConverter(String number) throws UnsupportedOperationException {
+		if (number.isEmpty()) {
+			throw new IllegalArgumentException("Empty String");
+		}
+		else if (number.isBlank()) {
+			throw new IllegalArgumentException("La Stringa è fatta solo da spazi vuoti");
+		}
+		number=number.strip();
 		for (int i=0;i<number.length();i++) {
-			if (!Character.isDigit(number.charAt(i)) && (i==0 && i!=number.length()-1) && number.charAt(0)!='-' && (number.charAt(number.length()-1) != ' ')) {
+			if (i==0 && (!Character.isDigit(number.charAt(i)) && number.charAt(0)!='-')) {
+				throw new IllegalArgumentException("Numero non Valido");
+			}
+			if (i!=0 &&  i!=number.length()-1 && !Character.isDigit(number.charAt(i))) {
+				throw new IllegalArgumentException("Numero non Valido");
+			}
+			if (i==number.length()-1 && (!Character.isDigit(number.charAt(i)) && number.charAt(0)!=' ')) {
 				throw new IllegalArgumentException("Numero non Valido");
 			}
 		}
 		int numero=Integer.parseInt(number);
-		if (numero<-32768 && numero>32767) {
+		if (numero<-32768 || numero>32767) {
 			throw new IllegalArgumentException("Number out of range");
 		}
 		return numero;
