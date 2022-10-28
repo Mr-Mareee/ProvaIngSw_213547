@@ -72,14 +72,13 @@ public class FunnyAlgorithms {
 	public int stringToIntConverter(String number) throws UnsupportedOperationException {
 		for (int i=0;i<number.length();i++) {
 			if (!Character.isDigit(number.charAt(i)) && (i==0 && i!=number.length()-1) && number.charAt(0)!='-' && (number.charAt(number.length()-1) != ' ')) {
-				throw new UnsupportedOperationException("Numero non Valido");
+				throw new IllegalArgumentException("Numero non Valido");
 			}
 		}
 		int numero=Integer.parseInt(number);
 		if (numero<-32768 && numero>32767) {
-			throw new UnsupportedOperationException("Number out of range");
+			throw new IllegalArgumentException("Number out of range");
 		}
-		
 		return numero;
 	}
 
